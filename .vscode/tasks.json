@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "商談準備シートを作成",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["prep.py", "${input:url}"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "商談準備シートを作成（AI分析なし）",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["prep.py", "${input:url}", "--no-ai"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "初回セットアップ（ライブラリのインストール）",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "pip", "install", "-r", "requirements.txt"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "url",
+      "type": "promptString",
+      "description": "商談相手のホームページURLを入力してください（例: https://example.co.jp）"
+    }
+  ]
+}
